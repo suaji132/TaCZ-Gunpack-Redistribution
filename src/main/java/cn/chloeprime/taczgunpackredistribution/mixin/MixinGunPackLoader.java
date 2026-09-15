@@ -18,9 +18,11 @@ public class MixinGunPackLoader {
     private List<GunPackLoader.GunPack> loadGunpacksFromResourcePacksAndShaderPacksFolder(List<GunPackLoader.GunPack> original) {
         var resourcePacks = FMLPaths.GAMEDIR.get().resolve("resourcepacks");
         var shaderPacks = FMLPaths.GAMEDIR.get().resolve("shaderpacks");
+        var mods = FMLPaths.GAMEDIR.get().resolve("mods");
         Iterables.concat(
                 TaCZGunpackRedistribution.scanPotentialExtensions(resourcePacks),
-                TaCZGunpackRedistribution.scanPotentialExtensions(shaderPacks)
+                TaCZGunpackRedistribution.scanPotentialExtensions(shaderPacks),
+                TaCZGunpackRedistribution.scanPotentialExtensions(mods)
         ).forEach(original::add);
         return original;
     }
